@@ -8,12 +8,13 @@ import requests
 app = Flask(__name__)
 
 lang = 'eng'  
-API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-7b-it"
-headers = {"Authorization": "Bearer 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"}
+
 
 def query(payload):
-    response = requests.post(API_URL, headers=headers, json=payload)
-    return response.json()
+	API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-7b-it"
+	headers = {"Authorization": "Bearer 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"}
+	response = requests.post(API_URL, headers=headers, json=payload)
+	return response.json()
 
 def predict_answer(text):
 	output = query({"inputs": f"detect question and answer all questions with only answers"+text,})
