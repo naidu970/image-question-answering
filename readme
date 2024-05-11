@@ -1,1 +1,23 @@
+# SnapSearch
+
+SnapSearch is a tool for Image Question Answering using OCR Extraction and Text-to-Text generation model. It deploys a Flask web app on Vercel for seamless interaction. The basic workflow includes uploading images to the cloud, extracting text using the Tesseract OCR API from Hugging Face Space, using the extracted text to predict output text as an answer using Hugging Face's serverless API, and displaying the result.
+
+## Features
+
+- Image Question Answering: Upload images and get text-based answers.
+- OCR Extraction: Utilizes Tesseract OCR API to extract text from images.
+- Text-to-Text Generation: Predicts output text based on the extracted text using Hugging Face's serverless API.
+- Automatic Image Deletion: Uploaded images are automatically deleted after 24 hours.
+
+## Deployment
+
+SnapSearch is deployed on Vercel : [SnapSearch](https://snapsearch.vercel.app/)
+
+## Acknowledgments
+
+- [Hugging Face](https://huggingface.co/) for providing the OCR and Text-to-Text generation models.
+- [Vercel](https://vercel.com/) for hosting the Flask web app.
+
+
+
 
