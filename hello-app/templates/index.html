@@ -42,6 +42,7 @@
  <p> Extracted Text  : 
      <form action="/process_edit" method="post">
     <input type="hidden" name="uploaded_image_url" value="{{ uploaded_image_url }}">
+    <input type="hidden" name="text" value="{{ prediction }}">
     <textarea name="edited_text" rows="10" cols="50">{{ extracted_text }}</textarea>
     <button type="submit">Submit</button>
 </form>
