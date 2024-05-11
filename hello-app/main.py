@@ -36,18 +36,18 @@ def get_output():
 	text = "Upload image in any the following format : Png/Jpg/Jpeg"
 	extracted_text =" "
 	if request.method == 'POST':
-		img = request.files['my_image']
+		#img = request.files['my_image']
 
-		img_path =  img.filename	
-		img.save(img_path)
-		bytes_data = img.stream.read()
+		#img_path =  img.filename	
+		#img.save(img_path)
+		#bytes_data = img.stream.read()
 		try :
-			image = Image.open(img_path)#io.BytesIO(bytes_data))
-			extracted_text  = pytesseract.image_to_string(image, lang=lang)
+			#image = Image.open(io.BytesIO(bytes_data))
+			extracted_text  = pytesseract.image_to_string(Image.open(io.BytesIO(request.files['my_image'].stream.read())), lang=lang)
 			text = predict_answer(extracted_text)
 		except :
 			text = "Invalid Format"
-	return render_template("index.html", extracted_text =extracted_text ,prediction = text, img_path = img_path)
+	return render_template("index.html", extracted_text =extracted_text ,prediction = text)#, img_path = img_path)
 
 
 
