@@ -41,7 +41,7 @@ def get_output():
 		#img_path =  img.filename	
 		#img.save(img_path)
 		#bytes_data = img.stream.read()
-		extracted_text = request.files['my_image'].stream.read()
+		extracted_text = request.files['my_image']
 		extracted_text= extracted_text.stream.read()
 		img = Image.open(io.BytesIO(extracted_text))
 		extracted_text  = "who was the president of india in 2023"#pytesseract.image_to_string(img, lang=lang)
