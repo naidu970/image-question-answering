@@ -31,7 +31,7 @@ def upload_image(image_data):
     # Prepare the data for the POST request
     payload = {
         "key": api_key,
-        "image": image_data.decode('utf-8')  # Pass the base64 encoded image data as a string
+        "image": image_data.decode('utf-8')  
     }
 
     # Make the POST request to upload the image
@@ -40,7 +40,6 @@ def upload_image(image_data):
     # Parse the JSON response
     json_response = response.json()
 
-    # Extract the URL of the uploaded image (assuming 'url' is the key)
     if 'data' in json_response:
         image_url = json_response['data']['url']
         return image_url
@@ -62,9 +61,7 @@ def process_edit():
     uploaded_image_url = request.form['uploaded_image_url']
     extracted_text = request.form['edited_text']
     
-    # Process the edited text (if needed) and perform any desired actions
     text = predict_answer(extracted_text)
-    # Return a response or redirect as needed
     return render_template("index.html",  extracted_text =extracted_text ,uploaded_image_url=uploaded_image_url,prediction = text)
 
 
@@ -73,31 +70,23 @@ def get_output():
 	text = "Upload image in any the following format : Png/Jpg/Jpeg"
 	extracted_text =" "
 	if request.method == 'POST':
-		# #img = request.files['my_image']
-
-		# #img_path =  img.filename	
-		# #img.save(img_path)
-		# #bytes_data = img.stream.read()
-		# extracted_text = request.files['my_image']
-		# extracted_text.save("a.png")
-		# try :
-		if True:
+	
+		try :
+	
 			extracted_text = request.files['my_image']
 			extracted_text= extracted_text.stream.read()
-			# pil_image = Image.open(io.BytesIO(extracted_text))
-			# with io.BytesIO() as output:
-			# 	pil_image.save(output, format="PNG")
-			# 	binary_image = output.getvalue()
+		
 			base64_image = base64.b64encode((extracted_text))
 			uploaded_image_url = upload_image(base64_image)
 			client = Client("https://kneelesh48-tesseract-ocr.hf.space/")
 			extracted_text = client.predict(uploaded_image_url, ["eng"], api_name="/tesseract-ocr")
 			text = predict_answer(extracted_text)
-		# except :
-		# 	text = "Invalid Format"
-		# 	extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg"
+		except :
+			text = "Invalid Format"
+			extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg"
+			uploaded_image_url =" "
 	
-	return render_template("index.html", extracted_text =extracted_text ,uploaded_image_url=uploaded_image_url,prediction = text)#, img_path = img_path)
+	return render_template("index.html", extracted_text =extracted_text ,uploaded_image_url=uploaded_image_url,prediction = text)
 
 
 
