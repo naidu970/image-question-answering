@@ -39,12 +39,14 @@
       <p> Download Link : <a href="{{uploaded_image_url}}">{{uploaded_image_url}}</a> </p>
       <!-- <p> Extracted Text  : {{extracted_text}} </p> -->
 
-      
-      <form action="/process_edit" method="post">
-        <input type="hidden" name="uploaded_image_url" value="{{ uploaded_image_url }}">
-        <textarea name="edited_text">{{ extracted_text }}</textarea>
-        <button type="submit">Submit</button>
-    </form>
+ <p> Extracted Text  : 
+     <form action="/process_edit" method="post">
+    <input type="hidden" name="uploaded_image_url" value="{{ uploaded_image_url }}">
+    <textarea name="edited_text" rows="10" cols="50">{{ extracted_text }}</textarea>
+    <button type="submit">Submit</button>
+</form>
+
+</p> 
 
 
       <p> Answers : {{prediction}} </p>
