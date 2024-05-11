@@ -57,6 +57,17 @@ def main():
 def about_page():
 	return "Naidu"
 
+@app.route("/process_edit", methods=['POST'])
+def process_edit():
+    uploaded_image_url = request.form['uploaded_image_url']
+    edited_text = request.form['edited_text']
+    
+    # Process the edited text (if needed) and perform any desired actions
+    text = predict_answer(edited_text)
+    # Return a response or redirect as needed
+    return render_template("index.html", prediction = text)
+
+
 @app.route("/submit", methods = ['GET', 'POST'])
 def get_output():
 	text = "Upload image in any the following format : Png/Jpg/Jpeg"
