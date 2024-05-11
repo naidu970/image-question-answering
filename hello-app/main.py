@@ -4,9 +4,10 @@ import pytesseract
 import io
 
 import requests
-
+import easyocr
 app = Flask(__name__)
 
+reader = easyocr.Reader(['en'])
 lang = 'eng'  
 API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-7b-it"
 headers = {"Authorization": "Bearer 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"}
@@ -44,7 +45,11 @@ def get_output():
 		extracted_text = request.files['my_image']
 		extracted_text= extracted_text.stream.read()
 		img = Image.open(io.BytesIO(extracted_text))
-		extracted_text  = pytesseract.image_to_string(img, lang=lang)
+		k = reader.readtext(img, detail = 0)
+		extracted_text=""
+		for i in range(len(k)):
+			extracted_text+= " " + k[i]
+		# extracted_text  = pytesseract.image_to_string(img, lang=lang)
 		text = predict_answer(extracted_text)
 		# try :
 		# 	extracted_text = request.files['my_image']
