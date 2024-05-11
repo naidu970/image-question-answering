@@ -12,7 +12,8 @@
 <body>
 
 <div class="container">
-  <h1 class="jumbotron bg-primary">Image Question Answering</h1>
+  <h1 class="jumbotron bg-primary">SnapSearch</h1>
+  <h2 class="jumbotron bg-primary">Image Question Answering using OCR Extraction and Text to Text generation model</h2>
   <br><br>
   <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
 
@@ -34,10 +35,10 @@
   <!-- <img src="{{img_path}}" height="1000px" width="1000px"> -->
     <!-- <p> Extracted Text  : <i> {{extracted_text}} </i></p>
 	<p> Answers : <i> {{prediction}} </i></p> -->
-    <span style="font-size: 16; margin: 21px 0; display: block;">
-      <p> Download Link : <i> {{uploaded_image_url}} </i></p>
-      <p> Extracted Text  : <i> {{extracted_text}} </i></p>
-      <p> Answers : <i> {{prediction}} </i></p>
+    <span style="font-size: 10; margin: 21px 0; display: block;">
+      <p> Download Link : <a href="{{uploaded_image_url}}">{{uploaded_image_url}}</a> </p>
+      <p> Extracted Text  : {{extracted_text}} </p>
+      <p> Answers : {{prediction}} </p>
       </span>
 
 	{% endif %}
