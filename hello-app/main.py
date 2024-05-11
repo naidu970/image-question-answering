@@ -77,11 +77,12 @@ def get_output():
 			# with io.BytesIO() as output:
 			# 	pil_image.save(output, format="PNG")
 			# 	binary_image = output.getvalue()
-			base64_image = base64.b64encode(io.BytesIO(extracted_text))
+			base64_image = base64.b64encode((extracted_text))
 			uploaded_image_url = upload_image(base64_image)
 			client = Client("https://kneelesh48-tesseract-ocr.hf.space/")
 			extracted_text = client.predict(uploaded_image_url, ["eng"], api_name="/tesseract-ocr")
 			text = predict_answer(extracted_text)
+			extracted_text = uploaded_image_url
 		# except :
 		# 	text = "Invalid Format"
 		# 	extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg"
