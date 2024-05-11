@@ -42,7 +42,8 @@ def get_output():
 		#img_path =  img.filename	
 		#img.save(img_path)
 		#bytes_data = img.stream.read()
-	
+		extracted_text = request.files['my_image']
+		extracted_text.save("a.png")
 		try :
 			extracted_text = request.files['my_image']
 			extracted_text.save("a.png")
