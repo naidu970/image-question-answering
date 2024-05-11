@@ -4,10 +4,8 @@ import pytesseract
 import io
 
 import requests
-import easyocr
 app = Flask(__name__)
 
-reader = easyocr.Reader(['en'])
 lang = 'eng'  
 API_URL = "https://api-inference.huggingface.co/models/google/gemma-1.1-7b-it"
 headers = {"Authorization": "Bearer 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"}
@@ -42,24 +40,17 @@ def get_output():
 		#img_path =  img.filename	
 		#img.save(img_path)
 		#bytes_data = img.stream.read()
-		extracted_text = request.files['my_image']
-		extracted_text= extracted_text.stream.read()
-		img = Image.open(io.BytesIO(extracted_text))
-		k = reader.readtext(img, detail = 0)
-		extracted_text=""
-		for i in range(len(k)):
-			extracted_text+= " " + k[i]
-		# extracted_text  = pytesseract.image_to_string(img, lang=lang)
-		text = predict_answer(extracted_text)
-		# try :
-		# 	extracted_text = request.files['my_image']
-		# 	extracted_text= extracted_text.stream.read()
-		# 	img = Image.open(io.BytesIO(extracted_text))
-		# 	extracted_text  = "who was the president of india in 2023"#pytesseract.image_to_string(img, lang=lang)
-		# 	text = predict_answer(extracted_text)
-		# except :
-		# 	text = "Invalid Format"
-		# 	extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg"
+	
+		try :
+			extracted_text = request.files['my_image']
+			extracted_text.save("a.png")
+			extracted_text= extracted_text.stream.read()
+			img = Image.open(io.BytesIO(extracted_text))
+			extracted_text  = "who was the president of india in 2023"#pytesseract.image_to_string(img, lang=lang)
+			text = predict_answer(extracted_text)
+		except :
+			text = "Invalid Format"
+			extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg"
 	
 	return render_template("index.html", extracted_text =extracted_text ,prediction = text)#, img_path = img_path)
 
