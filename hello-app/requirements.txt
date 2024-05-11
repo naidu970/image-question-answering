@@ -2,4 +2,4 @@ Flask==2.0.1
 Werkzeug==2.2.2
 requests==2.26.0
 gradio_client==0.16.2
-PILLOW==9.4.0
+Pillow==9.4.0
