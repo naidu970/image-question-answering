@@ -37,7 +37,16 @@
 	<p> Answers : <i> {{prediction}} </i></p> -->
     <span style="font-size: 20; margin: 21px 0; display: block;">
       <p> Download Link : <a href="{{uploaded_image_url}}">{{uploaded_image_url}}</a> </p>
-      <p> Extracted Text  : {{extracted_text}} </p>
+      <!-- <p> Extracted Text  : {{extracted_text}} </p> -->
+
+      
+      <form action="/process_edit" method="post">
+        <input type="hidden" name="uploaded_image_url" value="{{ uploaded_image_url }}">
+        <textarea name="edited_text">{{ extracted_text }}</textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+
       <p> Answers : {{prediction}} </p>
       </span>
 
