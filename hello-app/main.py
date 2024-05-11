@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 from PIL import Image
 import pytesseract
 import io
+from gradio_client import Client
+
 
 import requests
 app = Flask(__name__)
@@ -44,8 +46,8 @@ def get_output():
 		try :
 			extracted_text = request.files['my_image']
 			extracted_text.save("a.png")
-			extracted_text= extracted_text.stream.read()
-			img = Image.open(io.BytesIO(extracted_text))
+			# extracted_text= extracted_text.stream.read()
+			# img = Image.open(io.BytesIO(extracted_text))
 			extracted_text  = "who was the president of india in 2023"#pytesseract.image_to_string(img, lang=lang)
 			text = predict_answer(extracted_text)
 		except :
