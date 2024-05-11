@@ -73,11 +73,11 @@ def get_output():
 		if True:
 			extracted_text = request.files['my_image']
 			extracted_text= extracted_text.stream.read()
-			pil_image = Image.open(io.BytesIO(extracted_text))
-			with io.BytesIO() as output:
-				pil_image.save(output, format="PNG")
-				binary_image = output.getvalue()
-			base64_image = base64.b64encode(binary_image)
+			# pil_image = Image.open(io.BytesIO(extracted_text))
+			# with io.BytesIO() as output:
+			# 	pil_image.save(output, format="PNG")
+			# 	binary_image = output.getvalue()
+			base64_image = base64.b64encode(io.BytesIO(extracted_text))
 			uploaded_image_url = upload_image(upload_image)
 			client = Client("https://kneelesh48-tesseract-ocr.hf.space/")
 			extracted_text = client.predict(uploaded_image_url, ["eng"], api_name="/tesseract-ocr")
