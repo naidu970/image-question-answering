@@ -18,8 +18,8 @@ def query(payload):
     return response.json()
 
 def predict_answer(text):
-	output = query({"inputs": f"detect question and answer all questions with only answers"+text,})
-	return output[0]['generated_text'].replace(f"detect question and answer all questions with only answers"+text,"")
+	output = query({"inputs":text,})# f"detect question and answer all questions with only answers"+text,})
+	return output[0]['generated_text'].replace(text,"")#
 
 def upload_image(image_data):
     # Your ImgBB API key
