@@ -42,7 +42,7 @@ def get_output():
 		img.save(img_path)
 		bytes_data = img.stream.read()
 		try :
-			image = Image.open(io.BytesIO(bytes_data))
+			image = Image.open(img_path)#io.BytesIO(bytes_data))
 			extracted_text  = pytesseract.image_to_string(image, lang=lang)
 			text = predict_answer(extracted_text)
 		except :
