@@ -50,6 +50,7 @@ def get_output():
 			text = predict_answer(extracted_text)
 		except :
 			text = "Invalid Format"
+			extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg"
 	
 	return render_template("index.html", extracted_text =extracted_text ,prediction = text)#, img_path = img_path)
 
