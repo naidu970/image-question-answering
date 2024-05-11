@@ -42,12 +42,16 @@ def get_output():
 		#img.save(img_path)
 		#bytes_data = img.stream.read()
 		extracted_text = request.files['my_image'].stream.read()
-		try :
-			#image = Image.open(io.BytesIO(bytes_data))
-			extracted_text  = pytesseract.image_to_string(Image.open(io.BytesIO(extracted_text)), lang=lang)
-			text = predict_answer(extracted_text)
-		except :
-			text = "Invalid Format"
+		img = Image.open(io.BytesIO(extracted_text))
+		extracted_text  = pytesseract.image_to_string(img, lang=lang)
+		text = predict_answer(extracted_text)
+		# try :
+		# 	#image = Image.open(io.BytesIO(bytes_data))
+		# 	img = Image.open(io.BytesIO(extracted_text))
+		# 	extracted_text  = pytesseract.image_to_string(img, lang=lang)
+		# 	text = predict_answer(extracted_text)
+		# except :
+		# 	text = "Invalid Format"
 	
 	return render_template("index.html", extracted_text =extracted_text ,prediction = text)#, img_path = img_path)
 
