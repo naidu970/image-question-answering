@@ -56,7 +56,7 @@ def main():
 def about_page():
 	return "Naidu"
 
-@app.route("/process_edit", methods=['POST'])
+@app.route("/process_edit", methods=['GET', 'POST'])
 def process_edit():
 	if True:
 		uploaded_image_url = request.form['uploaded_image_url']
