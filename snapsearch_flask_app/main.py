@@ -78,7 +78,7 @@ def get_output():
 		
 			base64_image = base64.b64encode((extracted_text))
 			uploaded_image_url = upload_image(base64_image)
-			client = Client("https://naiduml-tesseract-ocr.hf.space/")
+			client = Client("https://naiduml-tessa-py-api-dhejfgeufgeufgeygfegfeugfefg.hf.space/")
 			extracted_text = client.predict(uploaded_image_url, ["eng"], api_name="/tesseract-ocr")
 			text = predict_answer(extracted_text)
 		except :
