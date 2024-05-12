@@ -58,9 +58,10 @@ def about_page():
 
 @app.route("/process_edit", methods=['GET', 'POST'])
 def process_edit():
+	uploaded_image_url = request.form['uploaded_image_url']
+	extracted_text = request.form['edited_text']
+	text = " "
 	if True:
-		uploaded_image_url = request.form['uploaded_image_url']
-		extracted_text = request.form['edited_text']
 		try:
 			client = Client("https://qwen-qwen1-5-72b-chat.hf.space/--replicas/3kh1x/")
 			result = client.predict(extracted_text, [["Hello!", "null"]], "Hello!!", api_name="/model_chat")
