@@ -60,19 +60,7 @@ def about_page():
 def process_edit():
 	uploaded_image_url = request.form['uploaded_image_url']
 	extracted_text = request.form['edited_text']
-	text = " "
-	if True:
-		try:
-			client = Client("https://qwen-qwen1-5-72b-chat.hf.space/--replicas/3kh1x/")
-			result = client.predict(extracted_text, [["Hello!", "null"]], "Hello!!", api_name="/model_chat")
-			text = result[1][1][1]
-		except Exception as e:
-			print("Error:", e)
-			if "504" in str(e):
-				text = predict_answer(extracted_text)
-				return render_template("index.html",  extracted_text =extracted_text ,uploaded_image_url=uploaded_image_url,prediction =text)  # Assuming you have a template for 504 errors
-			else:
-				text = predict_answer(extracted_text)
+	text = predict_answer(extracted_text)
 	return render_template("index.html",  extracted_text =extracted_text ,uploaded_image_url=uploaded_image_url,prediction = text)
 
 
