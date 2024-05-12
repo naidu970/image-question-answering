@@ -56,7 +56,7 @@ def main():
 def about_page():
 	return "Naidu"
 
-@app.route("/process_edit", methods=['GET', 'POST'])
+@app.route("/process_edit", methods=['POST'])
 def process_edit():
 	uploaded_image_url = request.form['uploaded_image_url']
 	extracted_text = request.form['edited_text']
