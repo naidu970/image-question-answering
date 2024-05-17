@@ -79,12 +79,13 @@ def get_output():
 			uploaded_image_url = upload_image(base64_image)
 			client = Client("https://naiduml-tessa-py-api-dhejfgeufgeufgeygfegfeugfefg.hf.space/")
 			extracted_text = client.predict(uploaded_image_url, ["eng"], api_name="/tesseract-ocr")
-			try:
-				client = Client("https://qwen-qwen1-5-72b-chat.hf.space/--replicas/3kh1x/")
-				result = client.predict(extracted_text, [["Hello!", "null"]], "Hello!!", api_name="/model_chat")
-				text = result[1][1][1]
-			except:
-				text = predict_answer(extracted_text)
+			# try:
+			# 	client = Client("https://qwen-qwen1-5-72b-chat.hf.space/--replicas/3kh1x/")
+			# 	result = client.predict(extracted_text, [["Hello!", "null"]], "Hello!!", api_name="/model_chat")
+			# 	text = result[1][1][1]
+			# except:
+			# 	text = predict_answer(extracted_text)
+			text = predict_answer(extracted_text)
 		except :
 			text = "Invalid Format"
 			extracted_text = "Upload image in any the following format : Png/Jpg/Jpeg or Enter Text Here and click on Submit"
